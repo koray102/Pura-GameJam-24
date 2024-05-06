@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &74484897404518211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74484897404518210}
+  - component: {fileID: 74484897404518209}
+  m_Layer: 0
+  m_Name: Karadelik
+  m_TagString: Karadelik
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &74484897404518210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74484897404518211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 74484897637975390}
+  - {fileID: 73973049961666793}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &74484897404518209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74484897404518211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe64b4c7d5ee7634c9c2d727338d09d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractionRange: 200
+  attractionForce: 10
+--- !u!1 &74484897637975391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74484897637975390}
+  - component: {fileID: 74484897637975389}
+  - component: {fileID: 74484897637975388}
+  m_Layer: 0
+  m_Name: Yokedici
+  m_TagString: Karadelik
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &74484897637975390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74484897637975391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 74484897404518210}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &74484897637975389
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74484897637975391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &74484897637975388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74484897637975391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a924530513c87c342bc9c20aec190480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &74484897274664039
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 74484897404518210}
+    m_Modifications:
+    - target: {fileID: 1047602220179548, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_TagString
+      value: Karadelik
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074787937341866, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_Name
+      value: FX_Blackhole_Large
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074787937341866, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_TagString
+      value: Karadelik
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667452778821086, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_TagString
+      value: Karadelik
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199351744182499996, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199867375017554148, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199902973953109478, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+--- !u!4 &73973049961666793 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4030286830161038, guid: 8be4d0d0456ee8d42be4cc3b70260fc5, type: 3}
+  m_PrefabInstance: {fileID: 74484897274664039}
+  m_PrefabAsset: {fileID: 0}
