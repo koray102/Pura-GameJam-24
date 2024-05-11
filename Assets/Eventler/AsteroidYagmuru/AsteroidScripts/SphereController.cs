@@ -7,15 +7,15 @@ public class SphereController : MonoBehaviour
     public float rotateYatkinlik = 10f;
 
     private Vector3 torque = new Vector3(0, 0, 0);
-    private float launchForce; // Fýrlatma kuvveti
+    private float launchForce; // Fï¿½rlatma kuvveti
 
     void Start()
     {
-        launchForce = Random.Range(6000, 12000);
+        launchForce = Random.Range(400, 500);
 
         Rigidbody rb = GetComponent<Rigidbody>();
         
-        rb.AddForce(transform.forward * launchForce*1.5f, ForceMode.Impulse); // Küreyi fýrlat
+        rb.AddForce(transform.forward * launchForce*1.5f, ForceMode.Impulse); // Kï¿½reyi fï¿½rlat
 
 
         torque.x = Random.Range(-1 - rotateYatkinlik, 1+ rotateYatkinlik);
@@ -23,9 +23,9 @@ public class SphereController : MonoBehaviour
         torque.z = Random.Range(-1 - rotateYatkinlik, 1+ rotateYatkinlik);
 
 
-        rb.AddTorque(torque, ForceMode.Impulse);// Döndür
+        rb.AddTorque(torque, ForceMode.Impulse);// Dï¿½ndï¿½r
 
-        // Yok olma iþlemini baþlat
+        // Yok olma iï¿½lemini baï¿½lat
         Invoke("DestroySphere", destroyDelay);
     }
 
@@ -33,7 +33,17 @@ public class SphereController : MonoBehaviour
 
     void DestroySphere()
     {
-        Destroy(gameObject); // Küreyi yok et
+        Destroy(gameObject); // Kï¿½reyi yok et
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {   
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("sdfsdf");
+            collision.gameObject.transform.position = new Vector3(-295.9141f,-22.35335f,-4.568902f);
+        }
+
+
+    }
 }

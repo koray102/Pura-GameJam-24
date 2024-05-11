@@ -21,7 +21,7 @@ public class SphereSpawner : MonoBehaviour
     {
         float katsayi = gameObject.transform.localScale.x;
 
-        float yuzeyKonumKatsayisi = katsayi * 0.5f;
+        float yuzeyKonumKatsayisi = katsayi;
         // Rastgele bir konum belirle
         float randomX = Random.Range(-yuzeyKonumKatsayisi, yuzeyKonumKatsayisi);
         float randomY = Random.Range(-yuzeyKonumKatsayisi, yuzeyKonumKatsayisi);

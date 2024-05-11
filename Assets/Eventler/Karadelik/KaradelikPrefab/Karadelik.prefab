@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe64b4c7d5ee7634c9c2d727338d09d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionRange: 200
-  attractionForce: 10
+  attractionRange: 5000
+  attractionForce: 200
 --- !u!1 &74484897637975391
 GameObject:
   m_ObjectHideFlags: 0

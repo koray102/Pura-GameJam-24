@@ -5,7 +5,7 @@ using UnityEngine;
 public class YokediciDelik : MonoBehaviour
 {
 
-    public GameObject spawnPoint1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,7 @@ public class YokediciDelik : MonoBehaviour
         }
         else
         {
-            collision.gameObject.transform.position = spawnPoint1.transform.position;
+            collision.gameObject.transform.position = new Vector3(-295.9141f,-22.35335f,-4.568902f);
         }
     }
 }

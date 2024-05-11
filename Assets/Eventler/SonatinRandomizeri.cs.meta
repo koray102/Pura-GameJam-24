@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dc567487f8d1b1c41b72139368323d2d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Meteor: {fileID: 5698228402804260912, guid: ef8546c9f4a49b04d85b51bbc389238c, type: 3}
+  - Karadelik: {fileID: 1733273286417019940, guid: 2084799eb6c7dee469c0e73bbe6120eb, type: 3}
+  - SuperNova: {fileID: 6237670009423299974, guid: 46e24e3a4b737ee4787846824d3b1e6b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

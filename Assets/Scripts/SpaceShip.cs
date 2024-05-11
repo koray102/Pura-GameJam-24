@@ -1,54 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpaceShip : MonoBehaviour
 {
-    public GameObject spawnpoint;
+    [SerializeField] private GameObject denemeObje;
+
+    [Header("Inputs")]
+    private bool TABInput;
+    private bool spaceInput;
+    private bool rightClick, rightClickUp;
+    private bool leftClick;
+    private bool WInput;
+
 
     [Header("SpaceShip")]
-    public float transitionDelay;
-    public Transform lookDirTransform;
-    private Rigidbody btrflyRb;
-    [SerializeField] private AudioSource engineSFX;
-    [SerializeField] private GameObject mainRocketVFX;
-    [SerializeField] private AudioSource dashSFX;
-    [SerializeField] private ParticleSystem dashVFX;
-    [SerializeField] private ParticleSystem chargeVFX;
+    [SerializeField] private float rotationSpeed;
     [SerializeField] private Slider cooldownSlider;
+    private Rigidbody shipRb;
+    private Vector3 targetRotation;
 
 
     [Header("Speed")]
-    public float forceInput;
-    public float maxSpeed;
-    private Vector3 btrflyVelo;
+    [SerializeField] private float forceInput;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private Vector3 addForceOffset;
     private float force;
-    private bool leftClick;
 
     
     [Header("Speed Power Up")]
-    public float powerFocusTime, powerDuration, powerCooldown;
-    public GameObject camHolder;
+    [SerializeField] private GameObject camHolder;
+    [SerializeField] private float powerFocusTime, powerDuration, powerCooldown;
     private bool isPowerUsed;
     private bool isForcePowerFinished = true;
-    private bool spaceInput;
     private bool isCharged;
     private float spaceTimeCounter;
-    private float powerCooldownCounter;
 
 
     [Header("Grab")]
-    public float maxCollectDist, minGrabDist;
-    public Transform camTransform;
-    public LayerMask IgnoreRayCast;
+    [SerializeField] private LayerMask IgnoreRayCast;
+    [SerializeField] private float maxCollectDist, minGrabDist;
+    [SerializeField] private Transform camTransform;
     [SerializeField] private Image CrossImage;
     [SerializeField] private Color crossHairColor, crossHairColorGrab;
     private GameObject hitObject;
-    private bool rightClick, rightClickUp;
-    private bool isHold;
-    private Ray r;
     private float holdObjPos;
 
 
@@ -59,11 +55,17 @@ public class SpaceShip : MonoBehaviour
     [Header("Side Move")]
     [SerializeField] private float sideTurnSpeed;
     [SerializeField] private float sideTurnForce;
-    [SerializeField] private float sideMoveDuration;
     [SerializeField] private float sideMoveCooldown;
-    [SerializeField] private GameObject lookAt;
     private bool canSideMove;
     private bool isSideMoveFinished;
+
+
+    [Header("FX")]
+    [SerializeField] private AudioSource engineSFX;
+    [SerializeField] private GameObject mainRocketVFX;
+    [SerializeField] private AudioSource dashSFX;
+    [SerializeField] private ParticleSystem dashVFX;
+    [SerializeField] private ParticleSystem chargeVFX;
 
 
     void Start()
@@ -75,7 +77,7 @@ public class SpaceShip : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        btrflyRb = GetComponent<Rigidbody>();
+        shipRb = GetComponent<Rigidbody>();
     }
 
 
@@ -85,20 +87,51 @@ public class SpaceShip : MonoBehaviour
         leftClick = Input.GetMouseButton(0);
         rightClick = Input.GetMouseButton(1);
         rightClickUp = Input.GetMouseButtonUp(1);
+        TABInput = Input.GetKey(KeyCode.Tab);
+        WInput = Input.GetKey(KeyCode.W);
 
-        r = new Ray(origin: camTransform.position, direction: camTransform.forward);
-        Debug.DrawRay(camTransform.localPosition, camTransform.forward * maxCollectDist, Color.green);
+        //Debug.DrawRay(camTransform.localPosition, camTransform.forward * maxCollectDist, Color.green);
+
+
+        if(Input.GetKey(KeyCode.W))
+        {   
+            denemeObje.transform.position = camTransform.position + camTransform.forward * maxCollectDist;
+
+            if(TABInput)
+            {
+                targetRotation = transform.forward;
+            }else
+            {
+                targetRotation = denemeObje.transform.position + addForceOffset - transform.position;
+            }
+
+
+            // İkisi de ayrı güzel dene bak dayı. Bu daha drift gibi alttaki daha küresel dönüyo
+            transform.rotation = Quaternion.Lerp(transform.rotation,
+                                                Quaternion.LookRotation(targetRotation), 
+                                                rotationSpeed * Time.deltaTime);
+
+            /*float rotationAngle = Mathf.Min(rotationSpeed * Time.deltaTime, 
+                                  Quaternion.Angle(transform.rotation, Quaternion.LookRotation(targetRotation)));
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetRotation),
+                                                  rotationAngle / rotationSpeed);*/
+        }
+
 
         if(Physics.Raycast(camTransform.localPosition, camTransform.forward, out hit, maxCollectDist, ~IgnoreRayCast))
         {
             hitObject = hit.collider.gameObject;
 
-            Debug.Log("Touched any object: " + hitObject);
+            //Debug.Log("Touched any object: " + hitObject);
 
             
             if(hitObject.TryGetComponent(out IInteractable interactable))
             {
-                CrossImage.color = crossHairColorGrab;
+                if(!hitObject.CompareTag("Dont"))
+                {
+                    CrossImage.color = crossHairColorGrab;
+                }
 
                 if(leftClick)
                 {
@@ -109,7 +142,7 @@ public class SpaceShip : MonoBehaviour
                 CrossImage.color = crossHairColor;
             }
 
-        }else if(!isHold && !rightClick && canSideMove)
+        }else if(!rightClick && canSideMove)
         {
             CrossImage.color = crossHairColor;
         }
@@ -121,64 +154,36 @@ public class SpaceShip : MonoBehaviour
         }else
         {
             spaceTimeCounter = 0;
-            powerCooldownCounter += Time.deltaTime;
         }
         
 
         if(spaceTimeCounter > powerFocusTime || isCharged)
         {
             isForcePowerFinished = false;
-            powerCooldownCounter = 0;
             isCharged = true;
-            camHolder.transform.localEulerAngles = new Vector3(0, 0, 0);
 
             // Hızlandırma
             if(Input.GetKeyUp(KeyCode.Space))
             {
-                force = forceInput * 20;
+                force = forceInput * 10;
                 StartCoroutine(PowerDelay());
                 dashVFX.Play();
                 dashSFX.mute = false;
                 chargeVFX.Stop();
-                
-                /*if(powerVFX.isStopped)
-                {
-                    Debug.Log("Dash started");
-                    isDashStarted = true;
-
-                    powerFocusVFX.Stop();
-                    powerVFX.Play();
-                    dashSFX.PlayOneShot(dashSFX.clip);
-                }*/
             }
         }else if (spaceTimeCounter > 0) // Charge esnasında gemiyi yavaşlat
         {
+            //Debug.Log("Charging");
+
+            camHolder.transform.localEulerAngles = new Vector3(0, 0, 0);
             force = forceInput / 5;
             chargeVFX.Play();
-
-            /*if(powerFocusVFX.isStopped)
-            {
-                chargeSFX.Play();
-                powerFocusVFX.Play();
-            }*/
 
         }else if(isForcePowerFinished)
         {
             force = forceInput;
-            //chargeSFX.Stop();
             chargeVFX.Stop();
         }
-
-
-        if(spaceTimeCounter == 0)
-        {
-            //powerFocusTimeSliderObj.SetActive(false);
-        }else
-        {
-            //powerFocusTimeSliderObj.SetActive(true);
-            //powerFocusTimeSlider.value = spaceTimeCounter / powerFocusTime;
-        }
-        //powerCooldownSlider.value = -powerCooldownCounter / (powerCooldown - powerDuration);
 
 
         if(Input.GetKey(KeyCode.A) && canSideMove)
@@ -197,29 +202,19 @@ public class SpaceShip : MonoBehaviour
         {
             cooldownSlider.value = 0;
         }
-
-        if(isSideMoveFinished && force == forceInput)
-        {
-            btrflyRb.velocity = Vector3.ClampMagnitude(btrflyRb.velocity, maxSpeed);
-            transform.forward += Vector3.Lerp(transform.forward, btrflyVelo.normalized, transitionDelay * Time.deltaTime);
-        }
     }
 
 
     private void FixedUpdate()
     {
         // Kameranın baktığı yöne doğru f uygula
-        if(Input.GetKey(KeyCode.W))
+        if(WInput)
         {
+            shipRb.AddForce(transform.forward * force);
+
             mainRocketVFX.SetActive(true);
             engineSFX.volume = Mathf.Lerp(engineSFX.volume, 0.2f, 0.2f);
-            if(Input.GetKey(KeyCode.Tab))
-            {
-                btrflyRb.AddForce(transform.forward * force);
-            }else
-            {
-                btrflyRb.AddForce(lookDirTransform.forward * force);
-            }
+
         }else
         {
             mainRocketVFX.SetActive(false);
@@ -227,13 +222,10 @@ public class SpaceShip : MonoBehaviour
         }
 
         // Geminin son hızını belirle
-        if(isForcePowerFinished && force == forceInput)
+        if(isForcePowerFinished)
         {
-            btrflyRb.velocity = Vector3.ClampMagnitude(btrflyRb.velocity, maxSpeed);
+            shipRb.velocity = Vector3.ClampMagnitude(shipRb.velocity, maxSpeed);
         }
-
-        // Gemiyi hızına göre döndür
-        btrflyVelo = btrflyRb.velocity;
     }
 
 
@@ -258,46 +250,44 @@ public class SpaceShip : MonoBehaviour
 
     private IEnumerator SideMove(float direction)
     {
+        //Debug.Log("Side Move");
+
         canSideMove = false;
         isSideMoveFinished = false;
 
-        transitionDelay /= 50;
-        btrflyRb.AddForce(-direction * sideTurnForce * transform.right, ForceMode.Impulse);
+        float sideMoveValue = 0;
+        // Hız vektörüne göre dönme kuvveti hesapla
+        Vector3 turnDirection = Vector3.Cross(Vector3.up, shipRb.velocity.normalized);
 
-        float sideMoveValue;
-        sideMoveValue = 0;
+        // Sağa dönme kuvvetini uygula
+        shipRb.AddForce(-direction * sideTurnForce * turnDirection, ForceMode.Impulse);
+
         while(sideMoveValue < 360f)
         {
-            Debug.Log("side");
-
             sideMoveValue = Mathf.Lerp(sideMoveValue, 365, sideTurnSpeed * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y,direction * sideMoveValue);
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, direction * sideMoveValue);
 
             yield return null;
         }
 
         isSideMoveFinished = true;
         cooldownSlider.value = sideMoveCooldown;
-        transitionDelay *= 50;
 
         yield return new WaitForSeconds(sideMoveCooldown);
         canSideMove = true;
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out IInteractable interactable))
+        Debug.Log("a");
+        if(other.gameObject.TryGetComponent(out IInteractable interactable))
         {
-            interactable.OnInteract();
+            if(other.gameObject.CompareTag("Dont"))
+            {
+                interactable.OnInteract();
+            }
         }
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Asteroid"))
-        {
-            gameObject.transform.position = spawnpoint.transform.position;
-        }
     }
 }

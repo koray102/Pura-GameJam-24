@@ -9,12 +9,13 @@ public class ShowInventory : MonoBehaviour
     private bool isActive;
     [SerializeField] private TMP_Text emerald;
     [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private GameObject controlsUI;
     [SerializeField] private TMP_Text ruby;
     [SerializeField] private TMP_Text safir;
     [SerializeField] private TMP_Text ice;
     [SerializeField] private TMP_Text diamond;
     [SerializeField] private TMP_Text carbon;
-    [SerializeField] private TMP_Text opel;
+    //[SerializeField] private TMP_Text opel;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,9 +38,11 @@ public class ShowInventory : MonoBehaviour
 
         if(isActive)
         {
+            controlsUI.SetActive(true);
             inventoryUI.SetActive(true);
         }else
         {
+            controlsUI.SetActive(false);
             inventoryUI.SetActive(false);
         }
 
@@ -48,7 +51,7 @@ public class ShowInventory : MonoBehaviour
         ice.text = inventorySystem.GetItemCount("Ice").ToString();
         diamond.text = inventorySystem.GetItemCount("Diamond").ToString();
         carbon.text = inventorySystem.GetItemCount("Carbon").ToString();
-        opel.text = inventorySystem.GetItemCount("Opel").ToString();
+        //opel.text = inventorySystem.GetItemCount("Opel").ToString();
         ruby.text = inventorySystem.GetItemCount("Ruby").ToString();
     }
 }

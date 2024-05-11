@@ -45,7 +45,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 993.62
+  m_Radius: 1500
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6237670009423299969
 MonoBehaviour:
@@ -59,8 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597b3c691a75bf643ac50657139e4847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ucanvas: {fileID: 0}
-  "uyar\u0131Kodu": {fileID: 0}
   etkinlikSuresi: 25
 --- !u!1001 &6237670010108958393
 PrefabInstance:
@@ -69,6 +67,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6237670009423299968}
     m_Modifications:
+    - target: {fileID: 2566627832268185807, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111752292389691732, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_Radius
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238712708056309065, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 196.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238712708056309065, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 196.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238712708056309065, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 196.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238712708056309065, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688941591397849179, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 18.397
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688941591397849179, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 18.397
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688941591397849179, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 18.397
+      objectReference: {fileID: 0}
     - target: {fileID: 5691909063535179516, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
       propertyPath: m_Name
       value: NovaPatlamasi
@@ -83,15 +117,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5691909063535179517, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 5691909063535179517, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 592
       objectReference: {fileID: 0}
     - target: {fileID: 5691909063535179517, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -475
       objectReference: {fileID: 0}
     - target: {fileID: 5691909063535179517, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
       propertyPath: m_LocalRotation.w
@@ -121,25 +155,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6600657590672546582, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_Radius
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412444601586865532, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412444601586865532, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412444601586865532, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412444601586865532, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507065346338632670, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507065346338632670, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507288875171043936, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 40
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6367239001813852144, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
---- !u!1 &1759087198181282370 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5690632036082943227, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
-  m_PrefabInstance: {fileID: 6237670010108958393}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1762024246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759087198181282370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc2f3b9bf3a7b74aabb14e050be9223, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1760097052952485956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5691909063535179517, guid: 317a5f12575c0ca48b707daf4b85d909, type: 3}
