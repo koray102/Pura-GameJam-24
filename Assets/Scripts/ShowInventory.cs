@@ -10,6 +10,7 @@ public class ShowInventory : MonoBehaviour
     [SerializeField] private TMP_Text emerald;
     [SerializeField] private GameObject inventoryUI;
     [SerializeField] private GameObject controlsUI;
+    [SerializeField] private GameObject controlsButtonUI;
     [SerializeField] private TMP_Text ruby;
     [SerializeField] private TMP_Text safir;
     [SerializeField] private TMP_Text ice;
@@ -38,10 +39,12 @@ public class ShowInventory : MonoBehaviour
 
         if(isActive)
         {
+            controlsButtonUI.SetActive(false);
             controlsUI.SetActive(true);
             inventoryUI.SetActive(true);
         }else
         {
+            controlsButtonUI.SetActive(true);
             controlsUI.SetActive(false);
             inventoryUI.SetActive(false);
         }
